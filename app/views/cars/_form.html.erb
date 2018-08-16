@@ -1,0 +1,8 @@
+<%= bootstrap_form_for(@car) do |form| %>
+  <%= form.text_field :registration_number %>
+  <%= form.text_field :model %>
+  <%= form.text_field :color %>
+  <%= form.submit class: "btn btn-md btn-success col-md-4 col-md-offset-4" %>
+<% end %>
+
+<br><br>

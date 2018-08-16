@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ParKings</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand glyphicon glyphicon-gift">ParKings</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <%= link_to '<span class="glyphicon glyphicon-home"></span> Home'.html_safe, root_path %>
+          </li>
+        </ul>
+        <% if signed_in? %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a><span class="glyphicon glyphicon-user"></span> <%= current_user.email %></a></li>
+            <li>
+              <%= link_to '<span class="glyphicon glyphicon-log-out"></span> Sign out'.html_safe, destroy_user_session_path, method: :delete %>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </nav>
+
+    <div class="container container-main">
+      <div class='container-fluid'>
+        <% if notice %>
+          <div id="success" class="row alert alert-success rounded">
+            <center><%= notice %></center>
+          </div>
+        <% end %>
+        <% if alert %>
+          <div id="error" class="row alert alert-danger rounded">
+            <center><%= alert %></center>
+          </div>
+        <% end %>
+      </div>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>
