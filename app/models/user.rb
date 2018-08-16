@@ -23,6 +23,11 @@ class User
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
 
+  ## Custom fields
+  field :name,               type: String
+  field :phone,              type: String
+  field :user_role,          type: String
+
   ## Confirmable
   # field :confirmation_token,   type: String
   # field :confirmed_at,         type: Time

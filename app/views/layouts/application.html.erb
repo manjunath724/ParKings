@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ParKings</title>
+    <title>| ParKings |</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,30 @@
   </head>
 
   <body>
+    <style type="text/css">
+      html,body { height: 100%;  margin: 0.1; }
+
+      body {
+        display: table;
+        width: 100%;
+      }
+
+      footer {
+        height: 50px;
+        background: #333333;
+        display: table-row;
+      }
+
+      footer a:hover, a:visited, a:link, a:active {
+        text-decoration: none;
+      }
+
+      footer p {
+        padding: absolute;
+        margin-left: 10px;
+      }
+    </style>
+
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -20,14 +44,29 @@
             <%= link_to '<span class="glyphicon glyphicon-home"></span> Home'.html_safe, root_path %>
           </li>
         </ul>
-        <% if signed_in? %>
-          <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+          <% if signed_in? %>
             <li><a><span class="glyphicon glyphicon-user"></span> <%= current_user.email %></a></li>
             <li>
               <%= link_to '<span class="glyphicon glyphicon-log-out"></span> Sign out'.html_safe, destroy_user_session_path, method: :delete %>
             </li>
-          </ul>
-        <% end %>
+          <% else %>
+            <li>
+              <% if controller_name == 'registrations' %>
+                <%= link_to '<span class="glyphicon glyphicon-log-in"></span> Log In'.html_safe, new_user_session_path %>
+              <% else %>
+                <%= link_to '<span class="glyphicon glyphicon-user"></span> Sign up'.html_safe, new_user_registration_path %>
+              <% end %>
+            </li>
+            <li>
+              <% if controller_name == 'passwords' %>
+                <%= link_to '<span class="glyphicon glyphicon-log-in"></span> Log In'.html_safe, new_user_session_path %>
+              <% else %>
+                <%= link_to '<span class="glyphicon glyphicon-lock"></span> Forgot your password?'.html_safe, new_user_password_path %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </nav>
 
@@ -45,7 +84,20 @@
         <% end %>
       </div>
 
-      <%= yield %>
+      <div class="row">
+        <%= yield %>
+      </div>
     </div>
+
+    <footer>
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-footer">
+            <p class="navbar-brand">All Rights Reserved &copy; <%= Date.today.year %> & Powered by <b><%= link_to 'Manjunath P', 'https://github.com/manjunath724', target: '_blank' %></b></p>
+            <p class="navbar-brand navbar-right">Contact information: <a href="mailto:manjunath724@gmail.com">manjunath724@gmail.com</a>.</p>
+          </div>
+        </div>
+      </nav>
+    </footer>
   </body>
 </html>
