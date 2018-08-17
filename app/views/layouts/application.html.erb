@@ -43,6 +43,11 @@
           <li class="active">
             <%= link_to '<span class="glyphicon glyphicon-home"></span> Home'.html_safe, root_path %>
           </li>
+          <% if signed_in? && current_user.admin? %>
+            <li>
+              <%= link_to '<span class="glyphicon glyphicon-equalizer"></span> Buildings'.html_safe, buildings_path %>
+            </li>
+          <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if signed_in? %>
@@ -88,6 +93,8 @@
         <%= yield %>
       </div>
     </div>
+
+    <br><br>
 
     <footer>
       <nav class="navbar navbar-inverse">

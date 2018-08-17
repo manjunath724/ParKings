@@ -1,0 +1,27 @@
+<div class="row align-items-start">
+  <div class="col-md-10 col-sm-10">
+    <%= f.text_field :name %>
+
+    <label>Slots</label>
+    <div class="col-md-offset-1" id="slots-holder-<%= f.index %>">
+      <%= f.fields_for :slots do |g| %>
+        <%= render 'slot_form', f: g %>
+      <% end %>
+    </div>
+    <div class="row align-items-start">
+      <div class="col-md-4">
+        <%= f.link_to_add :slots, data: { target: "#slots-holder-#{f.index}" }, 
+          class: 'btn btn-block btn-primary' do %> 
+          <b> + </b> Add a Slot
+        <% end %>
+      </div>
+    </div>
+    <div class="col"><hr/></div>
+  </div>
+  <div class="col-md-1 col-sm-1">
+    <%= f.link_to_remove class: 'close' do %>
+      <span aria-hidden="true">&times;</span>
+    <% end %>
+  </div>
+</div>
+<div class="col"><hr/></div>

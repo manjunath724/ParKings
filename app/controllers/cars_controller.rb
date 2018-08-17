@@ -7,18 +7,9 @@ class CarsController < ApplicationController
     @cars = Car.all
   end
 
-  # GET /cars/1
-  # GET /cars/1.json
-  def show
-  end
-
   # GET /cars/new
   def new
     @car = Car.new
-  end
-
-  # GET /cars/1/edit
-  def edit
   end
 
   # POST /cars

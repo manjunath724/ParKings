@@ -1,0 +1,24 @@
+<%= bootstrap_nested_form_for(@building) do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_field :location %>
+
+  <label>Floors</label>
+  <div class="col-md-offset-1" id="floors-holder">
+    <%= f.fields_for :floors do |g| %>
+      <%= render 'floor_form', f: g %>
+    <% end %>
+  </div>
+  <div class="row align-items-start">
+    <div class="col-md-4">
+      <%= f.link_to_add :floors, data: { target: "#floors-holder" }, 
+        class: 'btn btn-block btn-primary' do %> 
+        <b> + </b> Add a Floor
+      <% end %>
+    </div>
+  </div>
+  <div class="col"><hr/></div>
+
+  <%= f.submit class: 'btn btn-success col-md-4 col-md-offset-4' %>
+<% end %>
+
+<br><br>

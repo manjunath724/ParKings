@@ -24,9 +24,7 @@ class User
   field :last_sign_in_ip,    type: String
 
   ## Custom fields
-  field :name,               type: String
-  field :phone,              type: String
-  field :user_role,          type: String
+  field :user_role,          type: String, default: 'User'
 
   ## Confirmable
   # field :confirmation_token,   type: String
@@ -40,4 +38,10 @@ class User
   # field :locked_at,       type: Time
 
   has_many :cars, dependent: :destroy
+
+  %w(admin user).each do |role|
+    define_method("#{role}?") do
+      user_role.downcase == role if user_role
+    end
+  end
 end

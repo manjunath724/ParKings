@@ -1,9 +1,4 @@
 <p>
-  <strong>User:</strong>
-  <%= @car.user.email %>
-</p>
-
-<p>
   <strong>Registration number:</strong>
   <%= @car.registration_number %>
 </p>
@@ -18,5 +13,5 @@
   <%= @car.color %>
 </p>
 
-<%= link_to 'Back', cars_path, class: "btn btn-sm btn-warning" %> |
-<%= link_to 'Edit', edit_car_path(@car), class: "btn btn-sm btn-default" %>
+<%= link_to 'Back', cars_path, class: 'btn btn-sm btn-warning' %> |
+<%= link_to 'Edit', edit_car_path(@car), class: 'btn btn-sm btn-default' %>
