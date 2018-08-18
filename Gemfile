@@ -15,8 +15,10 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
-# Use devise for user management
+# Use Devise for user management and authentication
 gem 'devise'
+# Use Cancancan for authorization
+gem 'cancancan'
 # Nested forms
 gem 'nested_form'
 # Bootstrap form, Bootstrap sass and rails-datepicker

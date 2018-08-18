@@ -11,7 +11,7 @@
         <th>Exit on</th>
         <th>Total time</th>
         <th>Amount</th>
-        <th>Action</th>
+        <th colspan="2">Action</th>
       </tr>
     </thead>
 
@@ -25,11 +25,17 @@
           <td><%= request.exit_on.strftime("%d/%m/%Y - %I:%M %p") rescue nil %></td>
           <td><%= request.total_time %></td>
           <td><%= request.amount %></td>
-          <td>
-            <%= link_to 'Allot Slot', edit_parking_request_path(request), class: 'btn btn-sm btn-info' if current_user.admin? && request.requested? %>
-            <%= link_to 'Release Slot', release_parking_request_path(request), method: :post, class: 'btn btn-sm btn-primary' if current_user.user? && request.allotted? %>
-            <%= link_to 'Discharge Slot', discharge_parking_request_path(request), method: :post, class: 'btn btn-sm btn-success' if current_user.admin? && request.release? %>
-            <%= link_to 'Cancel', request, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' if current_user.user? && request.requested? %>
+          <td colspan="2">
+            <% if current_user.admin? %>
+              <% if request.requested? %>
+                <%= link_to 'Allot Slot', edit_parking_request_path(request), class: 'btn btn-sm btn-info' %>
+                <%= link_to 'Automate', automate_parking_request_path(request), method: :post, class: 'btn btn-sm btn-primary' %>
+              <% end %>
+              <%= link_to 'Discharge Slot', discharge_parking_request_path(request), method: :post, class: 'btn btn-sm btn-success' if request.release? %>
+            <% else %>
+              <%= link_to 'Release Slot', release_parking_request_path(request), method: :post, class: 'btn btn-sm btn-primary' if request.allotted? %>
+              <%= link_to 'Cancel', request, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' if request.requested? %>
+            <% end %>
             <%= link_to '<span class="glyphicon glyphicon-ok-circle"></span>'.html_safe if request.discharged? %>
           </td>
         </tr>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :parking_requests, except: [:new, :create, :show] do
     member do
+      post :automate
       post :release
       post :discharge
     end

@@ -1,5 +1,6 @@
 class ParkingRequestsController < ApplicationController
-  before_action :set_parking_request, only: [:edit, :update, :destroy, :release, :discharge]
+  load_and_authorize_resource
+  before_action :set_parking_request, only: [:edit, :update, :destroy, :automate, :release, :discharge]
 
   # GET /parking_requests
   def index
@@ -19,6 +20,19 @@ class ParkingRequestsController < ApplicationController
   def update
     if @parking_request.requested? && @parking_request.update(entry_on: Time.now, 
       slot_id: params[:parking_request][:slot_id], status: ParkingRequest::STATUSES[:allotted])
+      message = { notice: 'Parking request was successfully updated.' }
+    else
+      message = { alert: "#{@parking_request.errors.full_messages.join(', ')}" }
+    end
+    redirect_to parking_requests_url, message
+  end
+
+  # POST /parking_requests/1/automate
+  def automate
+    slot_id = Slot.not_in(:_id => ParkingRequest.not.discharged.pluck(:slot_id)).sample.id
+
+    if @parking_request.requested? && @parking_request.update(entry_on: Time.now, 
+      slot_id: slot_id, status: ParkingRequest::STATUSES[:allotted])
       message = { notice: 'Parking request was successfully updated.' }
     else
       message = { alert: "#{@parking_request.errors.full_messages.join(', ')}" }
