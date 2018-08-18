@@ -5,7 +5,7 @@ class Building
 
   has_many :floors, autosave: true
 
-  accepts_nested_attributes_for :floors
+  accepts_nested_attributes_for :floors, allow_destroy: true
 
   validates :name, :location, presence: true
 end

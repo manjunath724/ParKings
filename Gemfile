@@ -21,11 +21,10 @@ gem 'devise'
 gem 'cancancan'
 # Nested forms
 gem 'nested_form'
-# Bootstrap form, Bootstrap sass and rails-datepicker
+# Bootstrap form
 gem 'bootstrap_form'
+# Bootstrap sass
 gem 'bootstrap-sass', '~> 3.3.7'
-gem 'bootstrap-datepicker-rails'
-
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Use jquery as the JavaScript library

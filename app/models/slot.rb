@@ -6,8 +6,9 @@ class Slot
   belongs_to :floor
 
   validates :name, :price, presence: true
+  validates_numericality_of :price, greater_than_or_equal_to: 0
 
   def specifics
-    "#{floor.building.name} - #{floor.name} - #{name} - #{price}/hr"
+    "#{floor.try(:building).try(:name)} - #{floor.try(:name)} - #{name} - #{price}/hr"
   end
 end

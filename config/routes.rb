@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :buildings
+  resources :buildings, except: :destroy
 
   resources :cars, except: :destroy do
     post :park, on: :member

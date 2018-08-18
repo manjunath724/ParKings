@@ -46,7 +46,7 @@
           <% if signed_in? %>
             <li>
               <%= link_to '<span class="glyphicon glyphicon-equalizer"></span> Buildings'.html_safe, buildings_path if  current_user.admin? %>
-              <%= link_to '<span class="glyphicon glyphicon-compressed"></span> Cars'.html_safe, cars_path if current_user.user? %>
+              <%= link_to '<span class="glyphicon glyphicon-compressed"></span> My Cars'.html_safe, cars_path if current_user.user? %>
             </li>
           <% end %>
         </ul>
