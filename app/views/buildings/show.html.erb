@@ -26,14 +26,14 @@
         </tr>
         <tr>
           <% slots.times do |t| %>
-            <th><center>Slot</center></th>
+            <th><center>Slot - Price(Rs.)</center></th>
           <% end %>
         </tr>
       </thead>
       <tbody>
         <tr>
           <% f.slots.each do |s| %>
-            <td colspan="1"><center><%= s.name %></center></td>
+            <td colspan="1"><center><%= "#{s.name} - #{s.price}" %></center></td>
           <% end %>
         </tr>
       </tbody>

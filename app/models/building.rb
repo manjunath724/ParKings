@@ -3,9 +3,9 @@ class Building
   field :name, type: String
   field :location, type: String
 
-  embeds_many :floors, cascade_callbacks: true
+  has_many :floors, autosave: true
 
-  accepts_nested_attributes_for :floors, allow_destroy: true, autosave: true
+  accepts_nested_attributes_for :floors
 
   validates :name, :location, presence: true
 end

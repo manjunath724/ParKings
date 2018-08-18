@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  car: one
+  status: MyString
+  entry_on: 2018-08-18 11:36:30
+  exit_on: 2018-08-18 11:36:30
+  total_time: 1
+  amount: 1.5
+
+two:
+  car: two
+  status: MyString
+  entry_on: 2018-08-18 11:36:30
+  exit_on: 2018-08-18 11:36:30
+  total_time: 1
+  amount: 1.5

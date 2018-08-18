@@ -11,7 +11,8 @@
         <th>Registration number</th>
         <th>Model</th>
         <th>Color</th>
-        <th colspan="3"></th>
+        <th colspan="2">Actions</th>
+        <th>Parking Slot</th>
       </tr>
     </thead>
 
@@ -23,7 +24,13 @@
           <td><%= car.color %></td>
           <td><%= link_to 'View', car, class: 'btn btn-sm btn-primary' %></td>
           <td><%= link_to 'Edit', edit_car_path(car), class: 'btn btn-sm btn-default' %></td>
-          <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
+          <td>
+            <% if car.parking_requests.not.discharged.count == 0 %>
+              <%= link_to 'Request', park_car_path(car), method: :post, class: 'btn btn-sm btn-info' %>
+            <% else %>
+              Request in Process
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

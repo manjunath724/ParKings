@@ -1,10 +1,9 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: [:show, :edit, :update, :destroy]
+  before_action :set_car, only: [:show, :edit, :update, :park]
 
   # GET /cars
-  # GET /cars.json
   def index
-    @cars = Car.all
+    @cars = current_user.cars
   end
 
   # GET /cars/new
@@ -43,13 +42,12 @@ class CarsController < ApplicationController
     end
   end
 
-  # DELETE /cars/1
-  # DELETE /cars/1.json
-  def destroy
-    @car.destroy
-    respond_to do |format|
-      format.html { redirect_to cars_url, notice: 'Car was successfully destroyed.' }
-      format.json { head :no_content }
+  # POST /cars/1/park
+  def park
+    if @car.parking_requests.not.discharged.count == 0 && @car.parking_requests.build(status: ParkingRequest::STATUSES[:requested]).save
+      redirect_to root_path, notice: 'Parking request was made successfully.'
+    else
+      redirect_to cars_path, alert: "#{@car.errors.full_messages.join(', ')}"
     end
   end
 

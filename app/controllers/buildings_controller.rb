@@ -62,7 +62,7 @@ class BuildingsController < ApplicationController
     def building_params
       params.require(:building).permit(:name, :location, 
         floors_attributes: [:id, :name, :_destroy,
-        slots_attributes: [:id, :name, :_destroy]]
+        slots_attributes: [:id, :name, :price, :_destroy]]
       )
     end
 end
